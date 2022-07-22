@@ -38,6 +38,8 @@ class BLIP_Base(nn.Module):
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer)
         self.tokenizer = init_tokenizer()   
+        cwd = os.getcwd()
+        print(cwd)
         med_config = BertConfig.from_json_file(med_config)
         med_config.encoder_width = vision_width
         self.text_encoder = BertModel(config=med_config, add_pooling_layer=False)  
